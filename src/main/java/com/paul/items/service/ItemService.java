@@ -7,9 +7,9 @@ import com.paul.items.entity.Item;
 
 public interface ItemService {
 	
-	public Response <List<Item>> list();
+	public Response <List<Item>> read();
 	public Response<Item> create(Item item);
-	public Response<Item> read(Long id);
+	public Response<Item> buscar(Long id);
 	public Response<Item> update(Item item);
 	public Response<Void> delete(Long id);
 	

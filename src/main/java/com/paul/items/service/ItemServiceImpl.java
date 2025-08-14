@@ -3,6 +3,8 @@ package com.paul.items.service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.paul.items.dto.Response;
@@ -16,7 +18,7 @@ public class ItemServiceImpl  implements ItemService{
 	ItemRepository dao;
 
 	@Override
-	public Response<List<Item>> list() {
+	public Response<List<Item>> read() {
 		Response<List<Item>> rs = new Response<List<Item>>();
 		List<Item> itemsList = dao.findAll();
 		
@@ -89,14 +91,16 @@ public class ItemServiceImpl  implements ItemService{
 	}
 
 	@Override
-	public Response<Item> read(Long id) {
+	public Response<Item> buscar(Long id) {
 		
 		Response<Item> rs = new Response<>();
-		Item item = dao.getById(id);
 		
-		if(item != null) {
+		Optional<Item> itemOpc = dao.findById(id);
+		
+		if(itemOpc.isPresent()) {
+			Item item = itemOpc.get();
 			rs.setSuccess(true);
-			rs.setMessage("Item encontrado: " + item);
+			rs.setMessage("Item encontrado.");
 			rs.setData(item);
 			rs.setTimestamp(LocalDateTime.now());
 			return rs;
