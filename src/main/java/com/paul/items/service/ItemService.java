@@ -11,6 +11,6 @@ public interface ItemService {
 	public Response<Item> create(Item item);
 	public Response<Item> buscar(Long id);
 	public Response<Item> update(Item item);
-	public Response<Void> delete(Long id);
+	public Response<Boolean> delete(Long id);
 	
 }

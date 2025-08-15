@@ -13,4 +13,22 @@ public class Response<T> {
 	private String message;
 	private T data;
 	private LocalDateTime timestamp;
+	
+	public static <T> Response<T> success(T data, String message) {
+		Response<T> rs = new Response<>();
+		rs.setSuccess(true);
+		rs.setMessage(message);
+		rs.setData(data);
+		rs.setTimestamp(LocalDateTime.now());
+		return rs;
+	}
+	
+	public static <T> Response<T> error(String message){
+		Response<T> rs = new Response<>();
+		rs.setSuccess(false);
+		rs.setMessage(message);
+		rs.setData(null);
+		rs.setTimestamp(LocalDateTime.now());
+		return rs;
+	}
 }
